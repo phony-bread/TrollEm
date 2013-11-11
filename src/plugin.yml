@@ -1,0 +1,16 @@
+name: Troll Em
+main: frostbyte.plugins.trollem.TrollEm
+version: 0.1.0b
+description: Subtley trolls players on a regular basis
+authors: [FrostByte]
+website: http://dev.bukkit.org/bukkit-plugins/trololol/
+permissions:
+    trollster.troll:
+        description: Permission for 'troll' command
+        default: op
+commands:
+    troll:
+        description: Trolls people hardcore
+        permission: trollster.troll
+        usage: troll [PlayerName] <TrollType>
+        permission-message: Nice try, GumGum! You need permission to use that command
