@@ -5,12 +5,20 @@ description: Subtley trolls players on a regular basis
 authors: [FrostByte]
 website: http://dev.bukkit.org/bukkit-plugins/trololol/
 permissions:
-    trollster.troll:
+    trollem.troll:
         description: Permission for 'troll' command
+        default: op
+    trollem.reload:
+        description: Permission for 'reloadtrollconfig' command
         default: op
 commands:
     troll:
         description: Trolls people hardcore
-        permission: trollster.troll
+        permission: trollem.troll
         usage: troll [PlayerName] <TrollType>
         permission-message: Nice try, GumGum! You need permission to use that command
+    reloadtrollconfig:
+        description: Reloads the Troll Em config file without restarting the plugin
+        permission: trollem.reload
+        usage: reloadtrollconfig
+        permission-message: You do not have permission to use this command

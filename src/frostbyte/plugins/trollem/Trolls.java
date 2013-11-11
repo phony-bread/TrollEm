@@ -15,15 +15,97 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.Vector;
 import java.util.Random;
+import org.bukkit.command.CommandSender;
+import org.bukkit.configuration.file.FileConfiguration;
 
 public class Trolls //Class
 {
     final TrollEm plugin; //Create the instance data for the plugin
     Random generator = new Random(); //Create a new random generator
+    FileConfiguration config;
+    String[] trolllist = {"tnt", "creepscare", "lightning", 
+        "fire", "speed", "drunk", "up", "down", "hungry", 
+        "drop", "fatigue", "gravel", "chickens", "water", 
+        "entomb", "ghastscare", "fireball", "arrow", "hurt", 
+        "replace", "herobrine", "namechange", "air", "poison", 
+        "night", "rain", "chat", "blind", "weakness", "wither", 
+        "slow", "bedsplode", "compass", "level", "torch"};
     
     public Trolls(TrollEm t) //Constructor
     {
         plugin = t; //Get plugin instance
+        config = plugin.getConfig();
+    }
+    
+    public boolean isAllowed(String troll, CommandSender cs)
+    {
+        if(config.getInt("trolls." + troll + ".allow", 0)==1)
+        {
+            return true;
+        }
+        else
+        {
+            cs.sendMessage(troll + " has been disabled");
+            return false;
+        }
+    }
+    
+    public void getConfig()
+    {
+        config = plugin.getConfig();
+    }
+    
+    public boolean canOverride(String troll, CommandSender cs)
+    {
+        if(config.getInt("trolls." + troll + ".can-override", 0)==1)
+        {
+            return true;
+        }
+        else
+        {
+            cs.sendMessage(troll + " cannot be overridden");
+            return false;
+        }
+    }
+    
+    public boolean isAllowedByIndex(int index, CommandSender cs)
+    {
+        if(config.getInt("trolls." + trolllist[index] + ".allow", 0)==1)
+        {
+            return true;
+        }
+        else
+        {
+            cs.sendMessage(trolllist[index] + " has been disabled");
+            return false;
+        }
+    }
+    
+    public boolean canOverrideByIndex(int index, CommandSender cs)
+    {
+        if(config.getInt("trolls." + trolllist[index] + ".can-override", 0)==1)
+        {
+            return true;
+        }
+        else
+        {
+            cs.sendMessage(trolllist[index] + " cannot be overridden");
+            return false;
+        }
+    }
+    
+    public int getIndex(String troll)
+    {
+        for(int i=0; i<=trolllist.length; i++)
+        {
+            if(trolllist[i].equalsIgnoreCase(troll)) return i;
+        }
+        return -1;
+    }
+    
+    public String[] getTrollList()
+    {
+        return trolllist;
     }
     
     public void tnt(Player target, World world, Location loc) //Places tnt at the player's eye height
@@ -35,7 +117,6 @@ public class Trolls //Class
             world.getBlockAt(loc).setType(Material.AIR); //If not, replace it with air
             target.getWorld().spawn(loc, TNTPrimed.class).setFuseTicks(25); //Place a primed tnt entity with a 25 tick fuse
         }
-        
     }
     
     public void creepscare(Player target, World world, Location loc) //Play the creeper sound at the player

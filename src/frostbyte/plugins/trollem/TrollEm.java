@@ -47,10 +47,8 @@ public class TrollEm extends JavaPlugin
         if(!getConfig().contains("scheduler"))
         {
             console.sendMessage("[Troll Em] " + ChatColor.RED + "ERROR: Failed to load config file!");
-            console.sendMessage("[Troll Em] " + ChatColor.YELLOW + "Did you remember to copy config.yml to /plugins/Troll 'Em?");
-            
+            console.sendMessage("[Troll Em] " + ChatColor.YELLOW + "Did you remember to copy config.yml to /plugins/Troll Em?");
             return false;
-            
         }
         else return true;
     }
@@ -59,7 +57,7 @@ public class TrollEm extends JavaPlugin
     public boolean onCommand(CommandSender cs, Command cmd, String label, String[] args) //Called when a command specific to this plugin is called
     { 
         
-        if(cmd.getName().equals("troll")) //If the command is 'troll'
+        if(cmd.getName().equalsIgnoreCase("troll")) //If the command is 'troll'
         {
            
             if(args.length < 2 && args.length >0) //Check for a troll type argument
@@ -161,6 +159,16 @@ public class TrollEm extends JavaPlugin
             }
             return true;
          } 
+        else if (cmd.getName().equalsIgnoreCase("reloadtrollconfig"))
+        {
+            trolls.getConfig();
+            return true;
+        }
         return false;
+    }
+    
+    public boolean canRun(String troll, CommandSender cs, String isOverriding)
+    {
+        
     }
 }
