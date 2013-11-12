@@ -1,0 +1,57 @@
+== Troll 'Em  ==
+Troll 'Em is a plugin that allows the server to troll it's players.
+If the scheduler is set, the server will choose a random player
+on a regular basis and apply a random troll to them (eg, tnt, entomb, name change, etc.)
+Troll 'Em also allows players with sufficient permissions to use commands
+to manually troll players, or set the scheduler to pick on certain players
+without editing the config or restarting the plugin.
+
+{{http://i.imgur.com/51YEMIY.png|banner}}
+
+== Features ==
+* Scheduler: Randomly chooses a player to troll
+	Set the frequency
+	Pick on certain players
+	Prevent certain player from getting trolled
+* Announcement: Announce when players get trolled
+	To the whole world
+	To just the player
+	Only announce on manual trolling
+* Logging: Log when players get trolled
+	Log the location of players when they get trolled
+	Log the parameters of the troll
+	Only log on manual trolling
+* Trolls: Many different ways to troll
+	Allow or disallow certain trolls
+	Set the parameters (eg. explosion yield, sound volume, etc.)
+	Examples of trolls include: 
+		Torch: Deletes all torches within a certain range of the target player.
+		Compass: Sets the player's compass target to a random location.
+		Namechange: Change the player's online name
+		Entomb: Encases the player in a tomb of material (default: dirt)
+		Creepscare: Plays the creeper fuse sound right behind the player
+		Replace: Drops the player's entire inventory and replaces it with stacks of material (default: dirt)
+		And [i]many[/i] more!
+
+== Commands and Permissions ==
+|=Command|=Function|=Permission|
+|/troll <player> [troll] {override}|Applies the given troll to the given player. 
+	Overrides disallowed trolls if the player has permission.|trollem.troll|
+	
+|/reloadtrollconfig|Manually reloads the config file.|trollem.reload|
+
+== Configuration ==
+Configuration is located in /plugins/TrollEm/config.yml
+
+== Support ==
+If you need support, or have a bug report, please go through the 
+BukkitDev ticket system. You can get there through the 'tickets' 
+button at the top of this page.
+
+If you have feature suggestions or code contributions, please 
+send me a PM.
+
+== To-Do ==
+* Add more trolling options
+* Add weather and time based events
+* Think up new features!
