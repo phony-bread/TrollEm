@@ -31,10 +31,10 @@ public class Trolls //Class
         "night", "rain", "chat", "blind", "weakness", "wither", 
         "slow", "bedsplode", "compass", "level", "torch"};
     
-    public Trolls(TrollEm t) //Constructor
+    public Trolls(TrollEm t, FileConfiguration extconfig) //Constructor
     {
         plugin = t; //Get plugin instance
-        config = plugin.getConfig();
+        config = extconfig;
     }
     
     public boolean isAllowed(String troll, CommandSender cs)

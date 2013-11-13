@@ -1,69 +1,67 @@
 #The routine that randomly chooses a player to troll
 scheduler: 
-    #How often to troll (in ticks) 0=disable
+    #How often to troll (in ticks) false=disable
     frequency: 6000
-    #Frequency is exact or approximate? 1=exact 0=approximate
-    exact: 0
+    #Frequency is exact or approximate? true=exact false=approximate
+    exact: false
 
 #The routine that announces when a player has been trolled
 announcement:
     #Announce to the player when the scheduler trolls that player
-    announce: 0
+    announce: false
     #Publicly announce when the scheduler trolls a player
-    public-announce: 0
+    public-announce: false
     #Announce to the player when someone manually trolls that player
-    announce-manual: 1
+    announce-manual: true
     #Publicly announce when someone manually trolls a player
-    public-announce-manual: 0
+    public-announce-manual: false
 
 #The routine that writes trolls to a log file
 logging: 
-    #Whether or not to log 1=log 0=don't
-    log: 0
-    #Whether or not to log troll parameters (eg. yield, ticks) 1=log 0=don't
-    log-parameters: 0
-    #Whether or not to log the locations of players when they are trolled 1=log 0=don't
-    log-locations: 0
+    #Whether or not to log true=log false=don't
+    log: false
+    #Whether or not to log troll parameters (eg. yield, ticks) true=log false=don't
+    log-parameters: false
+    #Whether or not to log the locations of players when they are trolled true=log false=don't
+    log-locations: false
     #Whether or not to log manual trolls
-    log-manual: 1
+    log-manual: true
 
 #The routine that determines which players can get trolled
 players:
-    #A list of all players that can be trolled, seperated by commas (eg: [player1, player2])
-    whitelist: [player1,player2]
     #A list of all players that cannot be trolled, seperated by commas
     blacklist: [player3,player4]
     #Whether the whitelist or blacklist can be overriden by the -override flag
-    can-override: 11
+    can-override: true
 
 #A list of all possible trolls
 trolls:
     #Spawns live tnt at the player
     tnt: 
         #Whether or not to allow this troll
-        allow: 1
+        allow: true
         #Whether or not allow parameter can be overridden by the -override flag
-        can-override: 11
+        can-override: true
         #The list of parameters for this troll
         parameters: 
             #How large the explosion is 4.0=normal tnt
             yield: 4
-            #Whether or not the explosion sets fires 1=yes 0=no
-            set-fires: 0
+            #Whether or not the explosion sets fires true=yes false=no
+            set-fires: false
             #How likely it is that the scheduler will choose this troll 1=often 0=never
             likelyness: 0.5
     #Plays the creeper fuse sound to the player
     creepscare:
         #Whether or not to allow this troll
-        allow: 1
+        allow: true
         #Whether or not allow parameter can be overridden by the -override flag
-        can-override: 1
+        can-override: true
         #The list of parameters for this troll
         parameters: 
             #The volume of the sound 10=normal
             volume: 10
-            #Whether or not to play the sound to nearby players 1=yes 0=no
-            ambient: 0
+            #Whether or not to play the sound to nearby players true=yes false=no
+            ambient: false
             #The pitch of the sound 1=normal
             pitch: 1
             #How likely it is that the scheduler will choose this troll 1=often 0=never
@@ -71,21 +69,21 @@ trolls:
     #Strikes the player with lightning
     lightning: 
         #Whether or not to allow this troll
-        allow: 1
+        allow: true
         #Whether or not allow parameter can be overridden by the -override flag
-        can-override: 1
+        can-override: true
         #The list of parameters for this troll
         parameters: 
-            #Whether or not it sets fires 1=yes 0=no
-            set-fire: 0
+            #Whether or not it sets fires true=yes false=no
+            set-fire: false
             #How likely it is that the scheduler will choose this troll 1=often 0=never
             likelyness: 0.5
     #Sets the player on fire
     fire: 
         #Whether or not to allow this troll
-        allow: 1
+        allow: true
         #Whether or not allow parameter can be overridden by the -override flag
-        can-override: 1
+        can-override: true
         #The list of parameters for this troll
         parameters: 
             #How long (in ticks) to apply the effect for 20=1 second
@@ -95,9 +93,9 @@ trolls:
     #Changes the players walkspeed
     speed: 
         #Whether or not to allow this troll
-        allow: 1
+        allow: true
         #Whether or not allow parameter can be overridden by the -override flag
-        can-override: 1
+        can-override: true
         #The list of parameters for this troll
         parameters: 
             #The new speed to give the player 0.2=normal -1.0=can only move while jumping
@@ -109,25 +107,25 @@ trolls:
     #Causes the player's screen to wobble as though drunk
     drunk: 
         #Whether or not to allow this troll
-        allow: 1
+        allow: true
         #Whether or not allow parameter can be overridden by the -override flag
-        can-override: 1
+        can-override: true
         #The list of parameters for this troll
         parameters: 
             #How long (in ticks) to apply the effect for 20=1 second
             ticks: 600
             #The amplitude of the effect (1=normal)
             amplitude: 1
-            #Whether or not to apply the effect to players around the target as well 1=yes 0=no
-            ambient: 0
+            #Whether or not to apply the effect to players around the target as well 1=yes false=no
+            ambient: false
             #How likely it is that the scheduler will choose this troll 1=often 0=never
             likelyness: 0.5
     #Deletes blocks above the player, then teleports them up
     up: 
         #Whether or not to allow this troll
-        allow: 1
+        allow: true
         #Whether or not allow parameter can be overridden by the -override flag
-        can-override: 1
+        can-override: true
         #The list of parameters for this troll
         parameters: 
             #How many blocks upwards to go
@@ -137,23 +135,23 @@ trolls:
     #Deletes blocks below the player, causing them to fall
     down: 
         #Whether or not to allow this troll
-        allow: 1
+        allow: true
         #Whether or not allow parameter can be overridden by the -override flag
-        can-override: 1
+        can-override: true
         #The list of parameters for this troll
         parameters: 
             #How many blocks downwards to delete
             blocks: 16
-            #Do it 1 block in front of the player, or right below thier feet? 1=in front 0=below
-            infront: 0
+            #Do it 1 block in front of the player, or right below thier feet? true=in front false=below
+            infront: false
             #How likely it is that the scheduler will choose this troll 1=often 0=never
             likelyness: 0.5
     #Changes the value of the players hunger bar
     hungry: 
         #Whether or not to allow this troll
-        allow: 1
+        allow: true
         #Whether or not allow parameter can be overridden by the -override flag
-        can-override: 1
+        can-override: true
         #The list of parameters for this troll
         parameters: 
             #The player's new hunger value
@@ -165,13 +163,13 @@ trolls:
     #Drops whatever item the player is currently holding
     drop: 
         #Whether or not to allow this troll
-        allow: 1
+        allow: true
         #Whether or not allow parameter can be overridden by the -override flag
-        can-override: 1
+        can-override: true
         #The list of parameters for this troll
         parameters: 
-            #Whether or not to drop the items back into the world 1=drop 0=destroy
-            intoworld: 1
+            #Whether or not to drop the items back into the world true=drop false=destroy
+            intoworld: true
             #How far away from the player to drop the item
             distance: 5
             #How likely it is that the scheduler will choose this troll 1=often 0=never
@@ -179,9 +177,9 @@ trolls:
     #Slows the players mining speed
     fatigue: 
         #Whether or not to allow this troll
-        allow: 1
+        allow: true
         #Whether or not allow parameter can be overridden by the -override flag
-        can-override: 1
+        can-override: true
         #The list of parameters for this troll
         parameters: 
             #How long (in ticks) to apply the effect for 20=1 second
@@ -189,15 +187,15 @@ trolls:
             #The amplitude of the effect (1=normal)
             amplitude: 10
             #Whether or not to apply the effect to players near the target
-            ambient: 0
+            ambient: false
             #How likely it is that the scheduler will choose this troll 1=often 0=never
             likelyness: 0.5
     #Spawns a cube of gravel above the player
     gravel: 
         #Whether or not to allow this troll
-        allow: 1
+        allow: true
         #Whether or not allow parameter can be overridden by the -override flag
-        can-override: 1
+        can-override: true
         #The list of parameters for this troll
         parameters: 
             #The size (in blocks) of the cube (3 = 3x3x3)
@@ -209,9 +207,9 @@ trolls:
     #Spawns chickens at the players current location
     chickens: 
         #Whether or not to allow this troll
-        allow: 1
+        allow: true
         #Whether or not allow parameter can be overridden by the -override flag
-        can-override: 1
+        can-override: true
         #The list of parameters for this troll
         parameters: 
             #How many chickens to spawn(WARNING: Over 50 will probably lag the client, over 100 will likely lag the server, over 250 is just a bad idea! Use at your own risk)
@@ -223,25 +221,25 @@ trolls:
     #Digs a hole around the player and fills it with water
     water: 
         #Whether or not to allow this troll
-        allow: 1
+        allow: true
         #Whether or not allow parameter can be overridden by the -override flag
-        can-override: 1
+        can-override: true
         #The list of parameters for this troll
         parameters: 
             #The depth to dig down from the player
             depth: 2
             #The size (in blocks) of the hole (3=3x3x3)
             size: 5
-            #Whether to pour, or place water into the hole (1=pour 0=place)
-            pour: 1
+            #Whether to pour, or place water into the hole (true=pour false=place)
+            pour: true
             #How likely it is that the scheduler will choose this troll 1=often 0=never
             likelyness: 0.5
     #Surrounds the player with a cube of blocks
     entomb: 
         #Whether or not to allow this troll
-        allow: 1
+        allow: true
         #Whether or not allow parameter can be overridden by the -override flag
-        can-override: 1
+        can-override: true
         #The list of parameters for this troll
         parameters: 
             #How thick (in blocks) the tomb is (1-3 suggested)
@@ -253,33 +251,33 @@ trolls:
     #Plays the ghast screech to the player
     ghastscare: 
         #Whether or not to allow this troll
-        allow: 1
+        allow: true
         #Whether or not allow parameter can be overridden by the -override flag
-        can-override: 1
+        can-override: true
         #The list of parameters for this troll
         parameters: 
             #The volume of the sound (10=normal)
             volume: 10
-            #Whether or not to play the sound to players near the target (1=yes 0=no)
-            ambient: 0
+            #Whether or not to play the sound to players near the target (true=yes false=no)
+            ambient: false
             #The pitch of the sound (1=normal)
             pitch: 1
             #Whether to only do this troll when the target is in the nether
-            onlynether: 0
+            onlynether: false
             #How likely it is that the scheduler will choose this troll 1=often 0=never
             likelyness: 0.5
     #Shoots a fireball at the player
     fireball: 
         #Whether or not to allow this troll
-        allow: 1
+        allow: true
         #Whether or not allow parameter can be overridden by the -override flag
-        can-override: 1
+        can-override: true
         #The list of parameters for this troll
         parameters: 
             #The explosive yield of the fireball (4.0=normal tnt)
             yield: 4
             #Whether to only do this troll when the target is in the nether
-            onlynether: 1
+            onlynether: true
             #The distance (in blocks) to spawn the fireball from the target (farther=less likely to hit)
             distance: 20
             #How likely it is that the scheduler will choose this troll 1=often 0=never
@@ -287,9 +285,9 @@ trolls:
     #Shoots an arrow at the player
     arrow: 
         #Whether or not to allow this troll
-        allow: 1
+        allow: true
         #Whether or not allow parameter can be overridden by the -override flag
-        can-override: 1
+        can-override: true
         #The list of parameters for this troll
         parameters: 
             #The distance (in blocks) to spawn the arrow from the target
@@ -303,23 +301,23 @@ trolls:
     #Deals damage to the player
     hurt: 
         #Whether or not to allow this troll
-        allow: 1
+        allow: true
         #Whether or not allow parameter can be overridden by the -override flag
-        can-override: 1
+        can-override: true
         #The list of parameters for this troll
         parameters: 
             #The damage to inflict upon the target (2=1 heart)
             damage: 2
             #Whether or not to damage players near the target also
-            ambient: 0
+            ambient: false
             #How likely it is that the scheduler will choose this troll 1=often 0=never
             likelyness: 0.5
     #Replaces the player's whole inventory
     replace: 
         #Whether or not to allow this troll
-        allow: 1
+        allow: true
         #Whether or not allow parameter can be overridden by the -override flag
-        can-override: 1
+        can-override: true
         #The list of parameters for this troll
         parameters: 
             #The material to place into the inventory
@@ -327,15 +325,15 @@ trolls:
             #The amount per stack to place (cannot be more than a natural stack of the material(eg. dirt=64, snowball=16)
             amount: 64
             #Whether to place the original inventory into a chest next to the target, or simply drop it
-            chest: 0
+            chest: false
             #How likely it is that the scheduler will choose this troll 1=often 0=never
             likelyness: 0.5
     #Causes herobrine to send a personal message to the player
     herobrine: 
         #Whether or not to allow this troll
-        allow: 1
+        allow: true
         #Whether or not allow parameter can be overridden by the -override flag
-        can-override: 1
+        can-override: true
         #The list of parameters for this troll
         parameters: 
             #The list of possible messages to send (seperated by commas, eg: [I see you there, You're next!]
@@ -347,9 +345,9 @@ trolls:
     #Changes the players display name
     namechange: 
         #Whether or not to allow this troll
-        allow: 1
+        allow: true
         #Whether or not allow parameter can be overridden by the -override flag
-        can-override: 1
+        can-override: true
         #The list of parameters for this troll
         parameters: 
             #The new name to give the player
@@ -361,9 +359,9 @@ trolls:
     #If the player is underwater, changes thier remaining air value
     air: 
         #Whether or not to allow this troll
-        allow: 1
+        allow: true
         #Whether or not allow parameter can be overridden by the -override flag
-        can-override: 1
+        can-override: true
         #The list of parameters for this troll
         parameters: 
             #The new air amount to give the player (0=no air left)
@@ -373,15 +371,15 @@ trolls:
     #Poisons the player
     poison: 
         #Whether or not to allow this troll
-        allow: 1
+        allow: true
         #Whether or not allow parameter can be overridden by the -override flag
-        can-override: 1
+        can-override: true
         #The list of parameters for this troll
         parameters: 
             #The amplitude of the effect (1=normal)
             amplitude: 1
             #Whether or not to apply the effect to players near the target
-            ambient: 0
+            ambient: false
             #How long (in ticks) to apply the effect for 20=1 second
             ticks: 120
             #How likely it is that the scheduler will choose this troll 1=often 0=never
@@ -389,9 +387,9 @@ trolls:
     #Shows night time on the players client, regardless of the current server time
     night: 
         #Whether or not to allow this troll
-        allow: 1
+        allow: true
         #Whether or not allow parameter can be overridden by the -override flag
-        can-override: 1
+        can-override: true
         #The list of parameters for this troll
         parameters: 
             #How long (in ticks) to apply the effect for 20=1 second
@@ -401,9 +399,9 @@ trolls:
     #Shows rain on the players client, regardless of the current server weather
     rain: 
         #Whether or not to allow this troll
-        allow: 1
+        allow: true
         #Whether or not allow parameter can be overridden by the -override flag
-        can-override: 1
+        can-override: true
         #The list of parameters for this troll
         parameters: 
             #How long (in ticks) to apply the effect for 20=1 second
@@ -413,9 +411,9 @@ trolls:
     #Makes the player say things in chat
     chat: 
         #Whether or not to allow this troll
-        allow: 1
+        allow: true
         #Whether or not allow parameter can be overridden by the -override flag
-        can-override: 1
+        can-override: true
         #The list of parameters for this troll
         parameters: 
             #The list of possible messages to send (seperated by commas, eg: [I just got trolled, REKT]
@@ -425,15 +423,15 @@ trolls:
     #Blinds the player
     blind: 
         #Whether or not to allow this troll
-        allow: 1
+        allow: true
         #Whether or not allow parameter can be overridden by the -override flag
-        can-override: 1
+        can-override: true
         #The list of parameters for this troll
         parameters: 
             #How long (in ticks) to apply the effect for 20=1 second
             ticks: 400
             #Whether or not to apply the effect to players near the target
-            ambient: 0
+            ambient: false
             #The amplitude of the effect (1=normal)
             amplitude: 1
             #How likely it is that the scheduler will choose this troll 1=often 0=never
@@ -441,15 +439,15 @@ trolls:
     #Weakens the players attack
     weakness: 
         #Whether or not to allow this troll
-        allow: 1
+        allow: true
         #Whether or not allow parameter can be overridden by the -override flag
-        can-override: 1
+        can-override: true
         #The list of parameters for this troll
         parameters: 
             #How long (in ticks) to apply the effect for 20=1 second
             ticks: 2400
             #Whether or not to apply the effect to players near the target
-            ambient: 0
+            ambient: false
             #The amplitude of the effect (1=normal)
             amplitude: 2
             #How likely it is that the scheduler will choose this troll 1=often 0=never
@@ -457,15 +455,15 @@ trolls:
     #Adds the wither effect to the player
     wither: 
         #Whether or not to allow this troll
-        allow: 1
+        allow: true
         #Whether or not allow parameter can be overridden by the -override flag
-        can-override: 1
+        can-override: true
         #The list of parameters for this troll
         parameters: 
             #How long (in ticks) to apply the effect for 20=1 second
             ticks: 300
             #Whether or not to apply the effect to players near the target
-            ambient: 0
+            ambient: false
             #The amplitude of the effect (1=normal)
             amplitude: 1
             #How likely it is that the scheduler will choose this troll 1=often 0=never
@@ -473,15 +471,15 @@ trolls:
     #Adds the slow effect to the player
     slow: 
         #Whether or not to allow this troll
-        allow: 1
+        allow: true
         #Whether or not allow parameter can be overridden by the -override flag
-        can-override: 1
+        can-override: true
         #The list of parameters for this troll
         parameters: 
             #How long (in ticks) to apply the effect for 20=1 second
             ticks: 2400
             #Whether or not to apply the effect to players near the target
-            ambient: 0
+            ambient: false
             #The amplitude of the effect (1=normal)
             amplitude: 2
             #How likely it is that the scheduler will choose this troll 1=often 0=never
@@ -489,23 +487,23 @@ trolls:
     #Creates an explosion at the player's bed
     bedsplode: 
         #Whether or not to allow this troll
-        allow: 1
+        allow: true
         #Whether or not allow parameter can be overridden by the -override flag
-        can-override: 1
+        can-override: true
         #The list of parameters for this troll
         parameters: 
             #How large the explosion is (4.0=normal tnt)
             yield: 6.5
-            #Whether or not the explosion sets fires (1=yes 0=no)
-            fire: 0
+            #Whether or not the explosion sets fires (true=yes false=no)
+            fire: false
             #How likely it is that the scheduler will choose this troll 1=often 0=never
             likelyness: 0.5
     #Changes the location that the players compass points to
     compass: 
         #Whether or not to allow this troll
-        allow: 1
+        allow: true
         #Whether or not allow parameter can be overridden by the -override flag
-        can-override: 1
+        can-override: true
         #The list of parameters for this troll
         parameters: 
             #How far (in blocks) to set the new compass location from the original
@@ -515,9 +513,9 @@ trolls:
     #Changes the players level
     level: 
         #Whether or not to allow this troll
-        allow: 1
+        allow: true
         #Whether or not allow parameter can be overridden by the -override flag
-        can-override: 1
+        can-override: true
         #The list of parameters for this troll
         parameters: 
             #The new level to give the player
@@ -527,13 +525,13 @@ trolls:
     #Scans for torches around the player and deletes them
     torch: 
         #Whether or not to allow this troll
-        allow: 1
+        allow: true
         #Whether or not allow parameter can be overridden by the -override flag
-        can-override: 1
+        can-override: true
         #The list of parameters for this troll
         parameters: 
             #Whether or not the torches explode when they disappear
-            explode: 1
+            explode: true
             #The yield of the explosion (suggested to be small, eg(0.25)
             yield: 0.25
             #How far (in blocks) from the target to scan for torches
