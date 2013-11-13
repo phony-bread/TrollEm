@@ -22,3 +22,6 @@ commands:
         permission: trollem.reload
         usage: reloadtrollconfig
         permission-message: You do not have permission to use this command
+    trollhelp:
+        description: Displays the help file for the Troll Em plugin
+        usage: trollhelp

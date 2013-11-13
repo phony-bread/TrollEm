@@ -5,7 +5,7 @@ package frostbyte.plugins.trollem;
  * Main Class: TrollEm.java
  * Author: _FrostByte_
  * Version: 0.1.0b
- */
+ ******************/
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -43,8 +43,17 @@ public class TrollEm extends JavaPlugin
 
     public boolean loadConfiguration() //Called by onEnable
     {
+        //TODO: catch the filenotfoundexception
+        try 
+        {
+            getConfig().load("/TrollEm/config.yml");
+        }
+        catch (FileNotFoundException)
+        {
+            getConfig();
+        }
         ConsoleCommandSender console = this.getServer().getConsoleSender();
-        if(!getConfig().contains("scheduler"))
+        if(!getConfig().contains("scheduler"))//TODO: add config.yml EXISTS check
         {
             console.sendMessage("[Troll Em] " + ChatColor.RED + "ERROR: Failed to load config file!");
             console.sendMessage("[Troll Em] " + ChatColor.YELLOW + "Did you remember to copy config.yml to /plugins/Troll Em?");
@@ -62,12 +71,12 @@ public class TrollEm extends JavaPlugin
            
             if(args.length < 2 && args.length >0) //Check for a troll type argument
             {
-                cs.sendMessage("You need arguments, gumgum!\n Type '/troll help' for arg lists");
+                cs.sendMessage("You need arguments, gumgum!\n Type '/trollhelp' for arg lists");
                 return false;
             } 
             else if(args.length < 1) //Check for a player argument
             {
-                cs.sendMessage("You need a target, gumgum!\n Type '/troll help' for arg lists");
+                cs.sendMessage("You need a target, gumgum!\n Type '/trollhelp' for arg lists");
                 return false;
             }
             
@@ -80,12 +89,13 @@ public class TrollEm extends JavaPlugin
                 Player target = Bukkit.getPlayer(args[0]); //Get the player
                 World world = target.getWorld(); //Get the players current world
                 Location loc = target.getLocation(); //Get the players current location
-                
+                boolean isOverriding = false;//TODO: implement isoverriding argument check
+                //TODO: update the switch statement to call canRun()
                 switch(args[1])
                 {
                     default: cs.sendMessage("Invalid troll, gumgum!\n Type '/troll help' for a list of trolls");
                         break;
-                    case "tnt": trolls.tnt(target, world, loc);
+                    case "tnt": if(canRun("tnt", cs, isOverriding)) trolls.tnt(target, world, loc);
                         break;
                     case "creepscare": trolls.creepscare(target, world, loc);
                         break;
@@ -167,8 +177,32 @@ public class TrollEm extends JavaPlugin
         return false;
     }
     
-    public boolean canRun(String troll, CommandSender cs, String isOverriding)
+    public boolean canRun(String troll, CommandSender cs, boolean isOverriding)
     {
-        
+        if(getConfig().getString("trolls." + troll + ".allow").equalsIgnoreCase("1"))
+        {
+            return true;
+        }
+        else
+        {
+            if(getConfig().getString("trolls." + troll + ".can-override").equalsIgnoreCase("1"))
+            {
+                if(isOverriding)
+                {
+                    return true;
+                }
+                else 
+                {
+                    cs.sendMessage(troll + " has been disabled");
+                    return false;
+                }
+                
+            }
+            else 
+            {
+                cs.sendMessage(troll + " has been disabled");
+                return false;
+            }
+        }
     }
 }
