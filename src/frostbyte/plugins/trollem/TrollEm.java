@@ -4,7 +4,7 @@ package frostbyte.plugins.trollem;
  * Plugin Name: Troll 'Em
  * Main Class: TrollEm.java
  * Author: _FrostByte_
- * Version: 1.0b
+ * Version: 1.1b
  ******************/
 
 import java.io.IOException;
@@ -227,5 +227,17 @@ public class TrollEm extends JavaPlugin
                 return false;
             }
         }
+    }
+    
+    public boolean canTroll(String troll, Player target)
+    {
+        boolean notBlacklisted = true;
+        Object[] blacklist = getConfig().getStringList("players.blacklist").toArray();
+        for(int i=0; i<blacklist.length;i++)
+        {
+            if(blacklist[i].equals(target.getName()))
+                notBlacklisted = false;
+        }
+        return (getConfig().getBoolean("trolls." + troll + ".allow")&&notBlacklisted);
     }
 }

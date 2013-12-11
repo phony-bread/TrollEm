@@ -21,7 +21,6 @@ public class Scheduler extends BukkitRunnable
     @Override
     public void run()
     {
-        System.out.println("Random troll called!");
         Trolls trolls = plugin.trolls;
         Player[] list = plugin.getServer().getOnlinePlayers();
         if(list.length<1) return;
@@ -30,22 +29,26 @@ public class Scheduler extends BukkitRunnable
         Location loc = target.getLocation();
         String[] trolllist = trolls.getTrollList();
         String troll = trolllist[gen.nextInt(trolllist.length)];
-        try
+        if(plugin.canTroll(troll, target))
         {
-            Method trollMethod = trolls.getClass().getMethod(troll, Player.class, World.class, Location.class);
             try
             {
-                trollMethod.invoke(trolls, target, world, loc);
+                Method trollMethod = trolls.getClass().getMethod(troll, Player.class, World.class, Location.class);
+                try
+                {
+                    trollMethod.invoke(trolls, target, world, loc);
+                }
+                catch(IllegalArgumentException|IllegalAccessException|InvocationTargetException e)
+                {
+                    System.out.println("Troll failed");
+                    e.printStackTrace();
+                }
             }
-            catch(IllegalArgumentException|IllegalAccessException|InvocationTargetException e)
+            catch(SecurityException|NoSuchMethodException e)
             {
-                System.out.println("Troll failed");
-                e.printStackTrace();
+                System.out.println("Method reflection denied");
+            
             }
-        }
-        catch(SecurityException|NoSuchMethodException e)
-        {
-            System.out.println("Method reflection denied");
         }
     }
 }
